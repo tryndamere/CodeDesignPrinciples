@@ -12,11 +12,6 @@ public class CaloriesCalculator extends JFrame {
     private JTextField txtWeight;
     private JTextField txtAge;
     private JTextField txtCalories;
-    private JButton btnCalculate;
-
-    public static void main(String[] args) {
-        new CaloriesCalculator();
-    }
 
     public CaloriesCalculator() throws HeadlessException {
         super("CaloriesCalculator");
@@ -25,6 +20,10 @@ public class CaloriesCalculator extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new CaloriesCalculator();
     }
 
     private Box initVerticalBox() {
@@ -52,7 +51,7 @@ public class CaloriesCalculator extends JFrame {
 
     private JPanel initCalcPanel() {
         JPanel panelCalc = createFlowLayoutPanel();
-        btnCalculate = new JButton("Calculate");
+        JButton btnCalculate = new JButton("Calculate");
         btnCalculate.addActionListener(arg0 -> Calculate());
         panelCalc.add(btnCalculate);
         return panelCalc;

@@ -1,6 +1,6 @@
 package com.jiker.unit3;
 
-public class MaleCalories  extends Calories{
+public class MaleCalories extends Calories {
 
     public MaleCalories(Builder builder) {
         super(builder);
