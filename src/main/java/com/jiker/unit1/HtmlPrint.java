@@ -2,7 +2,7 @@ package com.jiker.unit1;
 
 import java.util.List;
 
-public class HtmlPrint extends ConsoleCalendar {
+public class HtmlPrint extends WeekdayCalendarPrinter {
 
     public HtmlPrint(String dateStr) {
         super(dateStr);

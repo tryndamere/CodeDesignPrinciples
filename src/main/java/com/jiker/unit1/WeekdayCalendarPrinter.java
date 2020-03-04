@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class ConsoleCalendar {
+public abstract class WeekdayCalendarPrinter {
 
     protected List<String> chineseWeekdayName = new ArrayList<>(6);
 
     protected List<String> weekDays = new ArrayList<>(6);
 
-    public ConsoleCalendar(String dateStr) {
+    public WeekdayCalendarPrinter(String dateStr) {
         this.addWeekDays2Print(DateTime.parse(dateStr).dayOfWeek().withMinimumValue().minusDays(1));
     }
 
