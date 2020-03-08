@@ -4,8 +4,6 @@ import java.text.DecimalFormat;
 
 public class Calories {
 
-    private boolean isMale;
-
     private double weight;
 
     private double feet;
@@ -16,17 +14,11 @@ public class Calories {
 
     private double calcCalories;
 
-    protected double baseFactor;
-
-    protected double weightFactor;
-
-    protected double inchesFactor;
-
-    protected double ageFactor;
+    private Factors factors;
 
     public static class Builder {
 
-        private boolean isMale;
+        private Factors factors;
 
         private double weight;
 
@@ -36,8 +28,8 @@ public class Calories {
 
         private double age;
 
-        public Builder isMale(boolean isMale) {
-            this.isMale = isMale;
+        public Builder factors(Factors factors) {
+            this.factors = factors;
             return this;
         }
 
@@ -62,21 +54,17 @@ public class Calories {
         }
 
         public Calories build() {
-            return this.isMale ? new MaleCalories(this) : new FemaleCalories(this);
+            return new Calories(this);
         }
     }
 
 
     protected Calories(Builder builder) {
-        this.isMale = builder.isMale;
+        this.factors = builder.factors;
         this.weight = builder.weight;
         this.feet = builder.feet;
         this.inches = builder.inches;
         this.age = builder.age;
-    }
-
-    public boolean isMale() {
-        return isMale;
     }
 
     public double getWeight() {
@@ -97,10 +85,10 @@ public class Calories {
 
     public String calc() {
         DecimalFormat decimalFormat = new DecimalFormat("#.######");
-        this.calcCalories = this.baseFactor
-                + (this.weightFactor * this.getWeight())
-                + (this.inchesFactor * ((this.getFeet() * 12) + this.getInches()))
-                - (this.ageFactor * this.getAge());
+        this.calcCalories = this.factors.getBaseFactor()
+                + (this.factors.getWeightFactor() * this.getWeight())
+                + (this.factors.getInchesFactor() * ((this.getFeet() * 12) + this.getInches()))
+                - (this.factors.getAgeFactor() * this.getAge());
         return decimalFormat.format(calcCalories);
     }
 }

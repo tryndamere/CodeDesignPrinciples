@@ -8,7 +8,7 @@ public class CaloriesTest {
     @Test
     public void should_calories_if_12years_110pound_male_height_5ft_1inch() {
         String result = new Calories.Builder()
-                .isMale(true)
+                .factors(Gender.getFactors("Male"))
                 .weight("110")
                 .feet("5")
                 .inches("1")
@@ -21,7 +21,7 @@ public class CaloriesTest {
     @Test
     public void should_calories_if_12years_110pound_female_height_5ft_1inch() {
         String result = new Calories.Builder()
-                .isMale(false)
+                .factors(Gender.getFactors("Female"))
                 .weight("110")
                 .feet("5")
                 .inches("1")

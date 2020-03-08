@@ -2,16 +2,22 @@ package com.jiker.unit3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CaloriesCalculator extends JFrame {
 
     private JRadioButton rBtnMale;
     private JRadioButton rBtnFemale;
+    private JRadioButton rBtnX1;
+    private JRadioButton rBtnX2;
     private JTextField txtFeet;
     private JTextField txtInches;
     private JTextField txtWeight;
     private JTextField txtAge;
     private JTextField txtCalories;
+
+    private java.util.List<JRadioButton> jRadioButtonList = new ArrayList(4);
 
     public CaloriesCalculator() throws HeadlessException {
         super("CaloriesCalculator");
@@ -92,17 +98,35 @@ public class CaloriesCalculator extends JFrame {
         ButtonGroup btnGroup = new ButtonGroup();
         rBtnMale = new JRadioButton("Male");
         rBtnFemale = new JRadioButton("Female");
+        rBtnX1 = new JRadioButton("x1");
+        rBtnX2 = new JRadioButton("x2");
         rBtnMale.setSelected(true);
         btnGroup.add(rBtnMale);
         btnGroup.add(rBtnFemale);
+        btnGroup.add(rBtnX1);
+        btnGroup.add(rBtnX2);
         panelRadio.add(rBtnMale);
         panelRadio.add(rBtnFemale);
+        panelRadio.add(rBtnX1);
+        panelRadio.add(rBtnX2);
+        jRadioButtonList.add(rBtnMale);
+        jRadioButtonList.add(rBtnFemale);
+        jRadioButtonList.add(rBtnX1);
+        jRadioButtonList.add(rBtnX2);
         return panelRadio;
+    }
+
+    private Factors getFactors() {
+        String genderName = this.jRadioButtonList.stream()
+                .filter(btn -> btn.isSelected())
+                .map(btn -> btn.getText()).collect(Collectors.toList())
+                .get(0);
+        return Gender.getFactors(genderName);
     }
 
     private void Calculate() {
         String value = new Calories.Builder()
-                .isMale(this.rBtnMale.isSelected())
+                .factors(this.getFactors())
                 .weight(this.txtWeight.getText())
                 .feet(this.txtFeet.getText())
                 .inches(this.txtInches.getText())
