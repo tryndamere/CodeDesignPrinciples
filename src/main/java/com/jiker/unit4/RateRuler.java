@@ -3,7 +3,7 @@ package com.jiker.unit4;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class RateRuler extends Ruler{
+public class RateRuler extends Ruler {
 
     protected BigDecimal discountRate = new BigDecimal(1 - 0.8);
 
