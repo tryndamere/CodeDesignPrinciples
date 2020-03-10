@@ -1,24 +1,17 @@
 package com.jiker.unit4;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class AmountCalculator {
 
-    private List<Goods> goodsList;
+    private Ruler ruler;
 
-    public AmountCalculator(List<Goods> goodsList) {
-        this.goodsList = goodsList;
+    public AmountCalculator(Ruler ruler) {
+        this.ruler = ruler;
     }
 
     public BigDecimal checkOut() {
-        BigDecimal amount = goodsList.stream()
-                .map(Goods::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return this.discount(amount);
+        return this.ruler.getTotalAmount().subtract(this.ruler.discount());
     }
 
-    private BigDecimal discount(BigDecimal amount) {
-        return amount.multiply(new BigDecimal(0.8));
-    }
 }
