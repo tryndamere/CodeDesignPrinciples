@@ -13,7 +13,7 @@ public abstract class ABaseRule implements IRule {
 
     protected abstract BigDecimal getAmount();
 
-    public BigDecimal getDiscount() {
+    public BigDecimal discount() {
         return this.getIRules().stream()
                 .map(rule -> rule.discount())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

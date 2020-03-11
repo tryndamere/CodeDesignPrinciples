@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeatMinusFullRule extends ABaseRule implements IRule {
+public class MeatMinusFullRule extends ABaseRule {
 
     private BigDecimal totalAmount;
 
@@ -24,11 +24,6 @@ public class MeatMinusFullRule extends ABaseRule implements IRule {
                 .filter(goods -> Category.MEAT.name().equalsIgnoreCase(goods.getCategory().name()))
                 .filter(goods -> !excludeName.equalsIgnoreCase(goods.getName()))
                 .map(Goods::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    @Override
-    public BigDecimal discount() {
-        return this.getDiscount();
     }
 
     @Override

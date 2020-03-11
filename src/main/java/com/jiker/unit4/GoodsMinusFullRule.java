@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoodsMinusFullRule extends ABaseRule implements IRule {
+public class GoodsMinusFullRule extends ABaseRule {
 
     private BigDecimal totalAmount;
 
@@ -14,7 +14,7 @@ public class GoodsMinusFullRule extends ABaseRule implements IRule {
 
     @Override
     public BigDecimal discount() {
-        return this.getDiscount();
+        return super.discount();
     }
 
     @Override
