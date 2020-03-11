@@ -2,7 +2,7 @@ package com.jiker.unit4;
 
 import java.math.BigDecimal;
 
-public abstract class Goods {
+public class Goods {
 
     private String name;
 
@@ -10,10 +10,13 @@ public abstract class Goods {
 
     private int count;
 
-    public Goods(String name, BigDecimal price, int count) {
+    private Category category;
+
+    public Goods(String name, BigDecimal price, int count, Category category) {
         this.name = name;
         this.price = price;
         this.count = count;
+        this.category = category;
     }
 
     public String getName() {
@@ -32,6 +35,7 @@ public abstract class Goods {
         return this.price.multiply(new BigDecimal(this.count));
     }
 
-    public abstract String category();
-
+    public Category getCategory() {
+        return category;
+    }
 }
